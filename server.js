@@ -66,6 +66,6 @@ const port = process.env.PORT || 3001;
 const host = process.env.HOST || `localhost`;
 
 
-app.listen(port, () => {
-    console.log(`Server is up on port ${port}`);
+app.listen(5001, () => {
+    console.log(`Server is up on port ${5001}`);
 });
