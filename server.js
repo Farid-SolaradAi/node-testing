@@ -24,7 +24,7 @@ app.get('/addGroundToDB', async (req, res, next) => {
 
         for (const [client, value] of Object.entries(clients)) {
             for (const site of value) {
-                let filepath = `/home/ubuntu/efs_grounddata/clients/${client}/processed_data/${client}_Subhourly_${site}.csv`;
+                let filepath = `/home/ubuntu/efs_grounddata/clients/${client}/processed-data/${client}_Subhourly_${site}.csv`;
 
                 const siteId = await pool.query("SELECT id FROM utility_sites WHERE sitename = $1", [site]);
 
@@ -57,7 +57,7 @@ app.get('/addGroundToDB', async (req, res, next) => {
 
     } catch (err) {
         console.log(err.message);
-        res.send(err.message);
+        return;
     }
 });
 
