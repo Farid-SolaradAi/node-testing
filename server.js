@@ -26,7 +26,7 @@ app.get('/addGroundToDB', async (req, res, next) => {
             for (const site of value) {
                 let filepath = `/home/ubuntu/efs_grounddata/clients/${client}/processed-data/${client}_Subhourly_${site}.csv`;
 
-                const siteInDB = await pool.query("SELECT id FROM utility_sites WHERE sitename = $1", [site]);
+                const siteInDB = await pool.query("SELECT id FROM utility_sites WHERE sitename = $1 AND company = $2", [site, client]);
 
                 const readableStream = fs.createReadStream(filepath);
 
