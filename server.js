@@ -50,10 +50,12 @@ app.get('/addGroundToDB', async (req, res, next) => {
 
                     })
                     .on('end', () => {
-                        res.send("GroundData added successfully to db");
+                        console.log(`CSV file successfully processed for ${site} and ${client}`);
                     });
             }
         }
+
+        res.send("Done");
 
     } catch (err) {
         console.log(err.message);
