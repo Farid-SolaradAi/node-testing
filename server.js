@@ -57,7 +57,7 @@ app.get('/addGroundToDB', async (req, res, next) => {
 
     } catch (err) {
         console.log(err.message);
-        next(err);
+        res.send(err.message);
     }
 });
 
