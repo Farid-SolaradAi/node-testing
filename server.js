@@ -67,5 +67,5 @@ const host = process.env.HOST || `localhost`;
 
 
 app.listen(port, () => {
-    console.log('Server is up on port 4000');
+    console.log(`Server is up on port ${port}`);
 });
