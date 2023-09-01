@@ -62,7 +62,10 @@ app.get('/addGroundToDB', async (req, res, next) => {
 });
 
 
+const port = process.env.PORT || 4000;
+const host = process.env.HOST || `localhost`;
 
-app.listen(4000, () => {
+
+app.listen(port, () => {
     console.log('Server is up on port 4000');
 });
