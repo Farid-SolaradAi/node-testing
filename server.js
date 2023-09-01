@@ -26,7 +26,7 @@ app.get('/addGroundToDB', async (req, res, next) => {
             for (const site of value) {
                 let filepath = `/home/ubuntu/efs_grounddata/clients/${client}/processed-data/${client}_Subhourly_${site}.csv`;
 
-                const siteId = await pool.query("SELECT id FROM utility_sites WHERE sitename = $1", [site]);
+                const siteInDB = await pool.query("SELECT id FROM utility_sites WHERE sitename = $1", [site]);
 
                 const readableStream = fs.createReadStream(filepath);
 
@@ -44,7 +44,7 @@ app.get('/addGroundToDB', async (req, res, next) => {
                         const groundGhi = parseFloat(row['Ground GHI']);
                         const groundPoa = parseFloat(row['Ground POA']);
                         const groundGen = parseFloat(row['AC_POWER_SUM']);
-
+                        const siteId = siteInDB.rows[0].id;
                         await pool.query("INSERT INTO ground_data (site_id, time, ground_ghi, ground_poa, ground_generation) VALUES ($1, $2, $3, $4, $5)", [siteId, time, groundGhi, groundPoa, groundGen]);
 
 
