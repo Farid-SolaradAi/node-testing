@@ -17,7 +17,7 @@ app.get('/addGroundToDB', async (req, res, next) => {
             'O2Power': ['Gorai'],
             'ReNew': ['Ashoknagar', 'Bikaner-ICR10', 'Bikaner-ICR27', 'Bikaner-ICR40', 'GUVNL-ICR11', 'GUVNL-ICR6', 'Honnali', 'Kottali-ICR16', 'Kottali-ICR7', 'Mandamarri', 'Nirmal', 'Pavagada', 'SECI-III-ICR15', 'SECI-III-ICR32', 'SECI-III-ICR6'],
             'Refex': ['Bhilai'],
-            'Sprng': ['Arinsun', 'Kanasar', 'NPKunta', 'Pavagada'],
+            'Sprng': ['Arinsun'],
             'Teqo': ['Charanka', 'Goyalri', 'Rewa', 'Warrangal'],
             'Vibrant': ['Savner']
         }
