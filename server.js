@@ -111,6 +111,8 @@ app.get('/addNcmrwfMetadata', async (req, res, next) => {
                 }
             }
         }
+
+        res.send('Done Bro, Ab chill mar')
     }
     catch (err) {
         console.log(err.message);
