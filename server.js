@@ -100,7 +100,7 @@ app.get('/addNcmrwfMetadata', async (req, res, next) => {
 
                         //find the time that file has been generated
                         const stats = fs.statSync(filePath)
-                        const fileTime = moment(stats.mtime).format('YYYY-MM-DD HH:mm:ss')
+                        const fileTime = moment(stats.mtime).format('YYYY-MM-DD HH:mm:ss.SSS')
 
                         let generatedTime = fileTime
 
