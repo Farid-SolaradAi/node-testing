@@ -3,6 +3,7 @@ const app = express();
 const fs = require('fs');
 const pool = require("./db");
 const csv = require('csv-parser');
+const moment = require('moment');
 
 app.get('/health', (req, res) => {
     res.send('ok');
@@ -58,6 +59,60 @@ app.get('/addGroundToDB', async (req, res, next) => {
         res.send("Done");
 
     } catch (err) {
+        console.log(err.message);
+        return;
+    }
+});
+
+
+app.get('/addNCMRWFToDB', async (req, res, next) => {
+    try {
+
+
+
+    }
+    catch (err) {
+        console.log(err.message);
+        return;
+    }
+});
+
+
+app.get('/addNcmrwfMetadata', async (req, res, next) => {
+    try {
+        //for 4.0k and 00Z
+        const resolutions = ['NCMRWF_04P0', 'NCMRWF_12P5']
+        const times = ['00Z', '12Z']
+
+        for (const resolution of resolutions) {
+            for (const time of times) {
+                let directoryPath = `/home/ubuntu/efs_nwpdata/NCMRWF/processed-data/ftp.ncmrwf.gov.in/${resolution}/${time}`;
+
+                const folders = fs.readdirSync(directoryPath)
+
+                for (const folder of folders) {
+                    let currDirPath = directoryPath + '/' + folder;
+                    const files = fs.readdirSync(currDirPath);
+
+                    for (const file of files) {
+                        let filePath = currDirPath + '/' + file
+                        let nwpType = resolution;
+
+                        //find the time that file has been generated
+                        const stats = fs.statSync(filePath)
+                        const fileTime = moment(stats.mtime).format('YYYY-MM-DD HH:mm:ss')
+
+                        let generatedTime = fileTime
+
+                        //insert into nwp_metadata table
+                        await pool.query("INSERT INTO nwp_metadata (nwp_type, generated_time, filepath) VALUES ($1, $2, $3)", [nwpType, generatedTime, filePath])
+                        console.log(file + '    Done')
+                    }
+                }
+            }
+        }
+    }
+    catch (err) {
         console.log(err.message);
         return;
     }
