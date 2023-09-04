@@ -186,7 +186,7 @@ app.get('/addNcmrwfData', async (req, res, next) => {
 
                             })
                             .on('end', () => {
-                                console.log(`CSV file successfully processed for ${siteName} of ${companyName}`);
+                                console.log(`${file}  processed`);
                             });
                     }
                 }
