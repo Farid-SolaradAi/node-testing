@@ -149,7 +149,7 @@ app.get('/addNcmrwfData', async (req, res, next) => {
                         //check if site exists in utility_sites table
                         if (siteInDB.rows.length === 0) {
                             console.log(`Site ${siteName} of ${companyName} does not exist in utility_sites table`);
-                            res.send(`Site ${siteName} of ${companyName} does not exist in utility_sites table`);
+                            // res.send(`Site ${siteName} of ${companyName} does not exist in utility_sites table`);
                             return;
                         }
 
