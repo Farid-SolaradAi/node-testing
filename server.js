@@ -65,19 +65,6 @@ app.get('/addGroundToDB', async (req, res, next) => {
 });
 
 
-app.get('/addNCMRWFToDB', async (req, res, next) => {
-    try {
-
-
-
-    }
-    catch (err) {
-        console.log(err.message);
-        return;
-    }
-});
-
-
 app.get('/addNcmrwfMetadata', async (req, res, next) => {
     try {
         //for 4.0k and 00Z
